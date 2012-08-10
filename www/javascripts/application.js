@@ -170,7 +170,7 @@ Guff.prototype = {
         var o = this;
         $('#send-guff').on('submit', function(e){
             if ($('#message').attr('value').length>0) {
-                this.getTokenID(function(tokenID) {
+                o.getTokenID(function(tokenID) {
                     $.ajax({
                          url: $('#send-guff').attr('action'),
                          type: 'post',
@@ -281,7 +281,7 @@ Guff.prototype = {
 
     //Set up Token retrieval plugin
     getTokenID: function(callback) {
-        cordova.exec(callback, getTokenFail, "PushNotification", "getToken", []);
+        cordova.exec(callback, this.getTokenFail, "PushNotification", "getToken", []);
     },
             
     getTokenFail: function(err) {
