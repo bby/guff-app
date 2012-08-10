@@ -170,19 +170,21 @@ Guff.prototype = {
         var o = this;
         $('#send-guff').on('submit', function(e){
             if ($('#message').attr('value').length>0) {
-                $.ajax({
-                     url: $('#send-guff').attr('action'),
-                     type: 'post',
-                     data: $('#send-guff').serialize(),
-                     dataType: 'json',
-                     timeout: 8000,
-                     success: function(data) { 
-                        console.log('message posted successfully');
-                        o.notificationHandler('success','Message posted');
-                        $("#back").trigger('click');
-                        o.resetMessageField();
-                        o.getMessages(); 
-                     }
+                this.getTokenID(function(tokenID) {
+                    $.ajax({
+                         url: $('#send-guff').attr('action'),
+                         type: 'post',
+                         data: $('#send-guff').serialize(),
+                         dataType: 'json',
+                         timeout: 8000,
+                         success: function(data) { 
+                            console.log('message posted successfully');
+                            o.notificationHandler('success','Message posted');
+                            $("#back").trigger('click');
+                            o.resetMessageField();
+                            o.getMessages(); 
+                         }
+                    });
                 });
             } else {
                 o.errorHandler('user', 'You need to write something', '');
@@ -275,6 +277,15 @@ Guff.prototype = {
             break;
         }
         
+    },
+
+    //Set up Token retrieval plugin
+    getTokenID: function(callback) {
+        cordova.exec(callback, getTokenFail, "PushNotification", "getToken", []);
+    },
+            
+    getTokenFail: function(err) {
+        alert("Failed to get Token")
     }
 };
 
