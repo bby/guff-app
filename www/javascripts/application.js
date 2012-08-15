@@ -281,7 +281,12 @@ Guff.prototype = {
 
     //Set up Token retrieval plugin
     getTokenID: function(callback) {
-        cordova.exec(callback, this.getTokenFail, "PushNotification", "getToken", []);
+        if(typeof cordova.exec == 'function') { 
+            cordova.exec(callback, this.getTokenFail, "PushNotification", "getToken", []);
+        } else {
+            //Fake the callback
+            callback('12345')
+        }
     },
             
     getTokenFail: function(err) {
