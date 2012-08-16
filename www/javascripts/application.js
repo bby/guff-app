@@ -6,7 +6,9 @@ Guff.prototype = {
     watchId: null,
     maxchars: 141,
     db: null,
-    
+    //url: 'guff.herokuapp.com',
+    url: '192.168.0.3:4567',
+
     init: function() {
         //bind interactions - ******this should probably be moved till after we are happy with accuracy******
         this.postMessage();
@@ -142,7 +144,7 @@ Guff.prototype = {
     getMessages: function(lat, lng, list) {
         console.log('getting messages');
         var o = this;
-        var message_data = "http://guff.herokuapp.com/messages/"+lat+"/"+lng;
+        var message_data = "http://"+o.url+"/messages/"+lat+"/"+lng;
         var list = list;
         console.log(message_data);
         $.ajax({
@@ -174,7 +176,7 @@ Guff.prototype = {
                     $.ajax({
                          url: $('#send-guff').attr('action'),
                          type: 'post',
-                         data: $('#send-guff').serialize(),
+                         data: $('#send-guff').serialize()+"&tokenID="+tokenID,
                          dataType: 'json',
                          timeout: 8000,
                          success: function(data) { 
@@ -182,7 +184,7 @@ Guff.prototype = {
                             o.notificationHandler('success','Message posted');
                             $("#back").trigger('click');
                             o.resetMessageField();
-                            o.getMessages(); 
+                            o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
                          }
                     });
                 });

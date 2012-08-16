@@ -4,10 +4,10 @@
   <title></title>
   
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-	<meta charset="utf-8">
+	  <meta charset="utf-8">
 	
-	<link rel="stylesheet" href="stylesheets/vendor/jqtouch/vanilla.css">
-	<link rel="stylesheet" href="stylesheets/application.css">
+	  <link rel="stylesheet" href="stylesheets/vendor/jqtouch/vanilla.css">
+	  <link rel="stylesheet" href="stylesheets/application.css">
     
 	<!-- iPad/iPhone specific css below, add after your main css >
 	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
@@ -31,6 +31,7 @@
         
         function onDeviceReady()
         {
+          console.log("We Have Started")
         	//navigator.notification.alert("PhoneGap is working");
         	checkConnection();
         }
@@ -119,7 +120,8 @@
                 <a class="back" id="back" href="#">cancel</a>
           </div>
           <div class="info scroll" id="error"></div>
-          <form id="send-guff" class="scroll" action="http://guff.herokuapp.com/send" method="post">
+          <!--<form id="send-guff" class="scroll" action="http://guff.herokuapp.com/send" method="post">-->
+            <form id="send-guff" class="scroll" action="http://192.168.0.3:4567/send" method="post">
               <ul class="edit rounded">
                   <li><label for="post_text">Post a message [<span id="counter">141</span>]</label></li>
                   <li><textarea rows="4" cols="30" name="message" id="message"></textarea></li>
