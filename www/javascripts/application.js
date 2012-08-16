@@ -6,8 +6,8 @@ Guff.prototype = {
     watchId: null,
     maxchars: 141,
     db: null,
-    //url: 'guff.herokuapp.com',
-    url: '192.168.0.3:4567',
+    url: 'guff.herokuapp.com',
+    //url: '192.168.0.3:4567',
 
     init: function() {
         //bind interactions - ******this should probably be moved till after we are happy with accuracy******
