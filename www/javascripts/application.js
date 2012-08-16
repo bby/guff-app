@@ -33,7 +33,7 @@ Guff.prototype = {
         });
     },
     
-    getFollowedLocations: function() {
+    /*getFollowedLocations: function() {
         var o = this;
         $("#followButton").on("click", function(e) {
             o.followLocation();
@@ -51,9 +51,9 @@ Guff.prototype = {
                o.showFollowedLocation();
             });        
         });
-    },
+    },*/
     
-    followLocation: function() {
+    /*followLocation: function() {
         var o = this;
         var name = $("#followed-location-name").val();
         console.log($("#followed-location-name").val());
@@ -63,9 +63,9 @@ Guff.prototype = {
             tx.executeSql("CREATE TABLE IF NOT EXISTS followed_locations(ID INTEGER PRIMARY KEY ASC, latitude FLOAT, longitude FLOAT, name STRING, created_at DATETIME)", []);
             tx.executeSql("INSERT INTO followed_locations(longitude, latitude, name) VALUES ('"+o.loc.coords.latitude+"','"+o.loc.coords.longitude+"','"+name+"')");
         });
-    },
+    },*/
     
-    showFollowedLocation: function() {
+    /*showFollowedLocation: function() {
         var o = this;
         $("#showFollowedLocations").on("click", function(e) {
             
@@ -98,7 +98,7 @@ Guff.prototype = {
             $("#fl-name").html($(this).attr('data-fl-name'));
             o.getMessages(lat, lng, "#followed-location-messages");
         });
-    },
+    },*/
     
     checkAccuracy: function(loc) {
         // put check in for accuracy location.coords.accuracy
@@ -116,12 +116,12 @@ Guff.prototype = {
             $("#longitude").attr('value', this.loc.coords.longitude);
             
             //create db for followed locations
-            this.db = openDatabase("guff", "1.0", "Guff followed locations", 2 * 1024 * 1024);
+            //this.db = openDatabase("guff", "1.0", "Guff followed locations", 2 * 1024 * 1024);
             
             //bind interactions etc
             this.setMap();
             this.getMessages(this.loc.coords.latitude, this.loc.coords.longitude, "#messages");
-            this.getFollowedLocations();
+            //this.getFollowedLocations();
         }
     },
     
