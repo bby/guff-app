@@ -82,6 +82,14 @@ public class MainActivity extends DroidGap {
                         JSONObject registered = null;
 						try {
 							registered = ServerUtilities.register(context, regId);
+							if (registered.getInt("res") == 1 || registered.getInt("res") == 2) {
+				        		//Result Registered
+				        		SharedPreferences settings = getSharedPreferences("guffPref", 0);
+				                SharedPreferences.Editor editor = settings.edit();
+				                editor.putString("tokenID", registered.getString("id"));
+				                editor.commit();
+
+				        	}
 						} catch (ClientProtocolException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -102,7 +110,7 @@ public class MainActivity extends DroidGap {
                         // unregistered callback upon completion, but
                         // GCMIntentService.onUnregistered() will ignore it.
                         try {
-							if (registered == null || registered.getString("uid") == null) {
+							if (registered == null || registered.getString("id") == null) {
 							    GCMRegistrar.unregister(context);
 							}
 						} catch (JSONException e) {

@@ -58,7 +58,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         try {
         	JSONObject result = ServerUtilities.register(context, registrationId);
         	
-        	if (result.getInt("res") == 1) {
+        	if (result.getInt("res") == 1 || result.getInt("res") == 2) {
         		//Result Registered
         		SharedPreferences settings = getSharedPreferences("guffPref", 0);
                 SharedPreferences.Editor editor = settings.edit();
