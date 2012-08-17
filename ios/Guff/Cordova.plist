@@ -24,6 +24,7 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>msg.guff.me.uk</string>
 		<string>guff.herokuapp.com</string>
 		<string>*.google.com</string>
 	</array>
