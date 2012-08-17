@@ -19,7 +19,7 @@
     
     @try {
         //NSString* echo = [arguments objectAtIndex:1];
-        NSString* echo = @"12345";
+        NSString* echo = @"df297b340abd49d0514a573a336fb6fc83ea180a9482e7b0e7fc19460224746e";
         if (echo != nil && [echo length] > 0) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
             javaScript = [pluginResult toSuccessCallbackString:callbackId];
