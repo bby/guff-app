@@ -7,15 +7,25 @@ Guff.prototype = {
     maxchars: 141,
     db: null,
     url: 'guff.herokuapp.com',
+    clickEvent: 'click',
     //url: '192.168.0.3:4567',
 
     init: function() {
         //bind interactions - ******this should probably be moved till after we are happy with accuracy******
+
+        // Determine if iPhone, Android or Desktop OS and setup the right click-event ("tap" vs "click").
+        var userAgent = navigator.userAgent.toLowerCase();
+        var isiPhone = (userAgent.indexOf('iphone') != -1 || userAgent.indexOf('ipod') != -1) ? true : false;
+        this.clickEvent = isiPhone ? 'tap' : 'click';
+
+
         this.postMessage();
         this.refreshLocation();
         this.countDown();
         //kick things off
         this.getLocation();
+
+
     },
     
     getLocation: function() {
@@ -29,7 +39,7 @@ Guff.prototype = {
     
     refreshLocation: function() {
         var o = this;
-        $("#locationRefresh").on("click", function(e) {
+        $("#locationRefresh").on(o.clickEvent, function(e) {
             console.log('refreshing location');
             o.getLocation();
         });
@@ -182,7 +192,9 @@ Guff.prototype = {
                          success: function(data) { 
                             console.log('message posted successfully');
                             o.notificationHandler('success','Message posted');
-                            $("#back").trigger('click');
+                            //Trigger doesn't work on iphone or android
+
+                            $("#back").trigger(o.clickEvent);
                             o.resetMessageField();
                             o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
                          }
