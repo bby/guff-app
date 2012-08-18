@@ -1,1 +1,8 @@
 .DS_Store
+android/bin
+android/assets/www-old/
+ios-old/
+ios/www/index.html
+ios/www/javascripts
+ios/www/stylesheets/
+ios/www/images/
