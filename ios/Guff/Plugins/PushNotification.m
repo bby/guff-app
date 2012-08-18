@@ -7,6 +7,7 @@
 //
 
 #import "PushNotification.h"
+#import "ApnsData.h"
 
 @implementation PushNotification
 
@@ -19,7 +20,13 @@
     
     @try {
         //NSString* echo = [arguments objectAtIndex:1];
-        NSString* echo = @"df297b340abd49d0514a573a336fb6fc83ea180a9482e7b0e7fc19460224746e";
+       
+        
+        
+        ApnsData* data = [[ApnsData alloc] init];
+
+        NSString* echo = data.devToken;
+        
         if (echo != nil && [echo length] > 0) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
             javaScript = [pluginResult toSuccessCallbackString:callbackId];
