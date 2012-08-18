@@ -205,6 +205,39 @@
                              stringByReplacingOccurrencesOfString: @" " withString: @""];
     
     
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"plist.plist"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath: path])
+    {
+        path = [documentsDirectory stringByAppendingPathComponent: [NSString stringWithFormat: @"plist.plist"] ];
+    }
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    
+    
+    //NSFileManager *fileManager = [NSFileManager defaultManager];
+    //NSMutableDictionary *data;
+    
+    if ([fileManager fileExistsAtPath: path])
+    {
+        data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    }
+    else
+    {
+        // If the file doesn’t exist, create an empty dictionary
+        data = [[NSMutableDictionary alloc] init];
+    }
+    
+    //To insert the data into the plist
+    [data setValue:deviceToken forKey:@"devToken"];
+    [data writeToFile: path atomically:YES];
+    [data release];
+    
+    
+
     
 	// Build URL String for Registration
 	// !!! CHANGE "www.mywebsite.com" TO YOUR WEBSITE. Leave out the http://
