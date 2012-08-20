@@ -152,11 +152,12 @@ Guff.prototype = {
           timeout: 8000,
           context: $('body'),
           success: function(data){ o.parseMessages(data, list); },
-          error: function(xhr, type){ console.log(type); }//o.errorHandler('ajax', xhr, type); }
+          error: function(xhr, type){ o.errorHandler('ajax', xhr, type); }
         });
     },
     
     parseMessages: function(data, list) {
+        console.log('parsing messages messages');
         var o = this;
         var append = '';
         $(data).each(function(){
@@ -181,8 +182,10 @@ Guff.prototype = {
                         o.notificationHandler('success','Message posted');
                         $("#back").trigger('click');
                         o.resetMessageField();
-                        o.getMessages(); 
-                     }
+                        o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
+                     },
+                     error: function(xhr, type){ o.errorHandler('ajax', xhr, type); }
+                     
                 });
             } else {
                 o.errorHandler('user', 'You need to write something', '');
