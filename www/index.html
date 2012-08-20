@@ -4,17 +4,17 @@
   <title></title>
   
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-	<meta charset="utf-8">
+	  <meta charset="utf-8">
 	
-	<link rel="stylesheet" href="stylesheets/vendor/jqtouch/vanilla.css">
-	<link rel="stylesheet" href="stylesheets/application.css">
+	  <link rel="stylesheet" href="stylesheets/vendor/jqtouch/vanilla.css">
+	  <link rel="stylesheet" href="stylesheets/application.css">
     
 	<!-- iPad/iPhone specific css below, add after your main css >
 	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
 	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
 	-->
 	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
-	<script type="text/javascript" charset="utf-8" src="phonegap-1.3.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="javascripts/cordova-2.0.0.js"></script>
 	
 	<!-- vendor libraries -->
     <script src="javascripts/vendor/jqtouch/zepto.jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
@@ -31,6 +31,7 @@
         
         function onDeviceReady()
         {
+          console.log("We Have Started")
         	//navigator.notification.alert("PhoneGap is working");
         	checkConnection();
         }
@@ -63,6 +64,7 @@
             //     formSelector: '.form'
             // });
         }
+
     </script>  
   </head>
   <body onload="onBodyLoad()">
@@ -76,7 +78,7 @@
           </div>
           <div class="info scroll" id="error"></div>
           
-          <div id="followed_locations">
+          <!--<div id="followed_locations">
               <h2>Follow current location</h2>
               <div id="followed-locations-toolbar">
               <a class="button" id="followButton" href="#">Follow</a><input type="text" name="followed-location-name" id="followed-location-name" value="" />
@@ -85,13 +87,13 @@
               <ul id="followed-locations-list">
                   <li><a href="#" class="followed-location" data-fl-name="Somewhere" data-fl-lat="0000" data-fl-lng="1111">No followed locations</a></li>
               </ul>
-          </div>
+          </div>-->
           
           <ul id="messages">
               <li><img id="map" src="images/loading.gif" class="loading" />Getting location</li>
           </ul>
       </div>
-      <div id="followed_location">
+      <!--<div id="followed_location">
           <div class="toolbar">
               <h1 id="fl-name">Location Name</h1>
               <a class="back" href="#">back</a>
@@ -100,7 +102,7 @@
           <ul id="followed-location-messages">
               <li><img id="map" src="images/loading.gif" class="loading" />Getting messages</li>
           </ul>
-      </div>
+      </div>-->
       <div id="location">
             <div class="toolbar">
                 <h1>Location</h1>
@@ -119,6 +121,7 @@
           </div>
           <div class="info scroll" id="error"></div>
           <form id="send-guff" class="scroll" action="http://guff.herokuapp.com/send" method="post">
+          <!--<form id="send-guff" class="scroll" action="http://192.168.0.3:4567/send" method="post">-->
               <ul class="edit rounded">
                   <li><label for="post_text">Post a message [<span id="counter">141</span>]</label></li>
                   <li><textarea rows="4" cols="30" name="message" id="message"></textarea></li>
