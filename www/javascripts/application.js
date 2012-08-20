@@ -45,73 +45,6 @@ Guff.prototype = {
         });
     },
     
-    /*getFollowedLocations: function() {
-        var o = this;
-        $("#followButton").on("click", function(e) {
-            o.followLocation();
-        });
-        
-        this.db.transaction(function(tx) {
-            tx.executeSql('SELECT * FROM followed_locations', [], function (tx, results) {
-              var len = results.rows.length, i;
-              var append = "";
-              for (i = 0; i < len; i++) {
-                append += "<li><a href='#followed_location' class='followed-location' data-fl-name='"+results.rows.item(i).name+"' data-fl-lat='"+results.rows.item(i).latitude+"' data-fl-lng='"+results.rows.item(i).longitude+"'>"+results.rows.item(i).name+"</a></li>";
-                console.log(results.rows.item(i));
-              }
-               $("#followed-locations").html(append);
-               o.showFollowedLocation();
-            });        
-        });
-    },*/
-    
-    /*followLocation: function() {
-        var o = this;
-        var name = $("#followed-location-name").val();
-        console.log($("#followed-location-name").val());
-        this.db.transaction(function(tx) {
-            console.log(name);
-            console.log('creating tables and inserting data');
-            tx.executeSql("CREATE TABLE IF NOT EXISTS followed_locations(ID INTEGER PRIMARY KEY ASC, latitude FLOAT, longitude FLOAT, name STRING, created_at DATETIME)", []);
-            tx.executeSql("INSERT INTO followed_locations(longitude, latitude, name) VALUES ('"+o.loc.coords.latitude+"','"+o.loc.coords.longitude+"','"+name+"')");
-        });
-    },*/
-    
-    /*showFollowedLocation: function() {
-        var o = this;
-        $("#showFollowedLocations").on("click", function(e) {
-            
-            if($("#followed-locations-list").css('display') == 'none') {
-                $("#followed-locations-list").css({'display':'block'});
-                $("#followed-locations-list").animate({
-                  opacity: 1
-                }, 500, 'ease-out');
-            } else {
-
-                $("#followed-locations-list").animate({
-                  opacity: 0
-                }, 500, 'ease-out');
-                $("#followed-locations-list").css({'display':'none'});
-            }
-        });
-        
-        $(".followed-location").on("click", function(e){
-            console.log('clicked');
-            var lat = $(this).attr('data-fl-lat');
-            var lng = $(this).attr('data-fl-lng');
-            $("#fl-name").html($(this).attr('data-fl-name'));
-            o.getMessages(lat, lng, "#followed-location-messages");
-        });
-        
-        $(".followed-location").on("click", function(e){
-            console.log('clicked');
-            var lat = $(this).attr('data-fl-lat');
-            var lng = $(this).attr('data-fl-lng');
-            $("#fl-name").html($(this).attr('data-fl-name'));
-            o.getMessages(lat, lng, "#followed-location-messages");
-        });
-    },*/
-    
     checkAccuracy: function(loc) {
         // put check in for accuracy location.coords.accuracy
         console.log('checking accuracy');
@@ -127,13 +60,9 @@ Guff.prototype = {
             $("#latitude").attr('value', this.loc.coords.latitude);
             $("#longitude").attr('value', this.loc.coords.longitude);
             
-            //create db for followed locations
-            //this.db = openDatabase("guff", "1.0", "Guff followed locations", 2 * 1024 * 1024);
-            
             //bind interactions etc
             this.setMap();
-            this.getMessages(this.loc.coords.latitude, this.loc.coords.longitude, "#messages");
-            //this.getFollowedLocations();
+            this.getMessages(this.loc.coords.latitude, this.loc.coords.longitude, "#messages")
         }
     },
     
