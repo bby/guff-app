@@ -127,7 +127,8 @@ Guff.prototype = {
                             $("#back").trigger(o.clickEvent);
                             o.resetMessageField();
                             o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
-                         }
+                         },
+                         error: function(xhr, type){ o.errorHandler('ajax', xhr, type); }
                     });
                 });
             } else {
