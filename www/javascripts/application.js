@@ -15,9 +15,14 @@ Guff.prototype = {
 
         // Determine if iPhone, Android or Desktop OS and setup the right click-event ("tap" vs "click").
         var userAgent = navigator.userAgent.toLowerCase();
-        var isiPhone = (userAgent.indexOf('iphone') != -1 || userAgent.indexOf('ipod') != -1) ? true : false;
-        this.clickEvent = isiPhone ? 'tap' : 'click';
+        var isiPhone = (userAgent.indexOf('iphone') != -1
+                        || userAgent.indexOf('ipod') != -1
+                        || userAgent.indexOf('ipad') != -1) ? true : false;
 
+        
+        //this.clickEvent = isiPhone ? 'tap' : 'click';
+        //Set click event to tap as click is not used by any of our target devices
+        this.clickEvent = 'tap';
 
         this.postMessage();
         this.refreshLocation();
