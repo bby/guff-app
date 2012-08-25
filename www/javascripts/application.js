@@ -46,7 +46,7 @@ Guff.prototype = {
     },
     
     getLocation: function() {
-        console.log('getting location');
+        console.log('getting location, current WatchID: '+this.watchId);
         var o = this;
         this.watchId = navigator.geolocation.watchPosition(function(loc) {  o.checkAccuracy(loc); }, function(error) { o.errorHandler('geo', 'Unable to get location', error); }, {
             enableHighAccuracy: true,
