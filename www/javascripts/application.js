@@ -1,3 +1,7 @@
+$("body").bind("pageAnimationEnd", function (e, info) {
+    $('body').height($('div.current').height());
+});
+
 function Guff() {
 }
 
@@ -8,6 +12,8 @@ Guff.prototype = {
     db: null,
     url: 'guff.herokuapp.com',
     clickEvent: 'click',
+    requiredAccuracy: 100,
+    accuracySteps: [],
     //url: '192.168.0.3:4567',
 
     init: function() {
@@ -35,7 +41,8 @@ Guff.prototype = {
             //
             o.getLocation();
         }, false); 
-
+        
+        this.disableInteraction();
         this.postMessage();
         this.refreshLocation();
         this.countDown();
@@ -43,6 +50,24 @@ Guff.prototype = {
         this.getLocation();
 
 
+    },
+
+    disableInteraction: function() {
+        console.log('disabling all interactions until accurate location obtained');
+        $('.button').hide();
+    },
+
+    enableInteraction: function() {
+        console.log('enabling all interactions after accurate location obtained');
+        $('.button').show();
+    },
+
+    enableSubmit: function() {
+        console.log("message submit enabled");
+        $("#submitGuff").on("click", function(e){
+            console.log("message form trigger submit");
+            $("#send-guff").submit();
+        })
     },
     
     getLocation: function() {
@@ -64,13 +89,31 @@ Guff.prototype = {
     },
     
     checkAccuracy: function(loc) {
-        // put check in for accuracy location.coords.accuracy
         console.log('checking accuracy');
         console.log('accuracy at: ' + loc.coords.accuracy);
-        if(loc.coords.accuracy < 100) {
+        
+        this.accuracySteps.push(loc.coords.accuracy);
+        var accuracyMeter = (this.requiredAccuracy / this.accuracySteps[0])*100;
+        if(accuracyMeter<=100) {
+            $("#accuracy-indicator span").css({width: accuracyMeter+'%'});
+        }
+
+        if (accuracyMeter<=30) {
+            $("#accuracy-indicator span").css({backgroundColor: 'red'});
+        } else if (accuracyMeter > 30 && accuracyMeter <= 60) {
+            $("#accuracy-indicator span").css({backgroundColor: 'orange'});
+        } else if (accuracyMeter > 60 && accuracyMeter < 100) {
+            $("#accuracy-indicator span").css({backgroundColor: 'yellow'});
+        } else {
+            $("#accuracy-indicator span").css({backgroundColor: 'green'});
+        }
+        
+        
+        if(loc.coords.accuracy < this.requiredAccuracy) {
             console.log('accurate location obtained');
             console.log('accuracy at: '+loc.coords.accuracy);
             navigator.geolocation.clearWatch(this.watchId); 
+            this.enableInteraction();
             this.loc = loc;
             
             //set hidden fields for message form
@@ -80,7 +123,8 @@ Guff.prototype = {
             
             //bind interactions etc
             this.setMap();
-            this.getMessages(this.loc.coords.latitude, this.loc.coords.longitude, "#messages")
+            this.getMessages(this.loc.coords.latitude, this.loc.coords.longitude, "#messages");
+            this.enableSubmit();
         }
     },
     
@@ -129,7 +173,10 @@ Guff.prototype = {
         
         var o = this;
         $('#send-guff').on('submit', function(e){
-            console.log('posting message');
+            
+            //disable button till successful submission or error
+            $("#submitGuff").off('click');
+            
             if ($('#message').attr('value').length>0) {
                 o.getTokenID(function(tokenID) {
                     $.ajax({
@@ -145,13 +192,15 @@ Guff.prototype = {
 
                             $("#back").trigger(o.clickEvent);
                             o.resetMessageField();
+                            o.enableSubmit();
                             o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
                          },
                          error: function(xhr, type){ o.errorHandler('ajax', xhr, type); }
                     });
                 });
             } else {
-                o.errorHandler('user', 'You need to write something', '');
+                //o.errorHandler('user', 'You need to write something', '');
+                console.log('You need to write something')
             }
             return false;
         });
@@ -192,7 +241,7 @@ Guff.prototype = {
             if (minutes > 115) {
                 var mOld = 121-minutes;
                 var mS = mOld > 1 ? 's':'';
-                time_message = "posted less than "+mOld+" minute"+mS+" ago";
+                time_message = mOld+"m "+mS+"ago";
             } else {
                 time_message = 'under 2 hours left ';
             }
@@ -216,6 +265,7 @@ Guff.prototype = {
     },
     
     errorHandler: function(type, message, error) {
+        $("#error").show();
         switch(type)
         {
         case 'geo':

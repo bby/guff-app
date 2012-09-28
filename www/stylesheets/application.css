@@ -25,6 +25,10 @@
     height: 16px;
 }
 
+img.loading {
+    padding-right: 10px;
+}
+
 #followed_locations .button {
     right: 0;
     top: 0;
@@ -53,4 +57,115 @@
     right: 0;
     position: relative;
     bottom: auto !important;
+}
+
+#accuracy-indicator {
+    width: 100px;
+    height: 20px;
+    border: 1px solid black;
+    float: right;
+}
+
+#accuracy-indicator span {
+    background-color: #ccc;
+    display: block;
+    width: 100%;
+    height: 20px;
+}
+
+#counter {
+    float: right;
+}
+
+#error {
+    display: none;
+}
+
+ul#messages li, #send-guff ul li  {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+ul#messages li p {
+    width: 70%;
+    float: left;
+}
+
+ul#messages li span {
+    width: 20%;
+    float: right;
+    color: #ccc;
+}
+
+#jqt ul li textarea {
+    padding: 5px;
+}
+
+#jqt ul li input[type="text"], #jqt ul li input[type="password"], #jqt ul li input[type="tel"], #jqt ul li input[type="number"], #jqt ul li input[type="search"], #jqt ul li input[type="email"], #jqt ul li input[type="url"], #jqt ul li textarea, #jqt ul li select {
+    font-size: 16px;
+}
+
+#jqt .toolbar {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: rgba(32, 121, 163, 0) 0 1px 6px;
+    box-shadow: rgba(28, 94, 127, 0.8) 0 1px 6px;
+    border-bottom: 1px solid #2479A3;
+    z-index: 10;
+    position: relative;
+    padding: 10px;
+    height: 44px;
+}
+
+#jqt .toolbar {
+    background-color: #2A8AC5;
+}
+
+#jqt .button, #jqt .back, #jqt .cancel, #jqt .add {
+    position: absolute;
+    overflow: hidden;
+    width: auto;
+    height: 30px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    white-space: nowrap;
+    background: none;
+    bottom: 6px;
+    right: 10px;
+    margin: 0;
+    padding: 0 10px;
+    color: white;
+    text-shadow: #2A8AC5 0 -1px 0;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0, 0, 0, 0.2) 0 1px 2px inset;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0, 0, 0, 0.2) 0 1px 2px inset;
+    border: 1px solid #2479A3;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-image: none;
+    background-color: #1C5E7F;
+}
+
+#jqt .toolbar > h1 {
+    color: white;
+    text-shadow: #1C5E7F 0 1px 0;
+}
+
+#jqt #home .toolbar > h1 {
+    bottom: 4px;
+}
+
+#infoButton svg {
+    margin-top: 4px;
+}
+
+#locationButton svg, #locationRefresh svg {
+    margin-top: 2px;
+}
+span.label { 
+    padding-left: 10px;
+    float:right; 
 }
