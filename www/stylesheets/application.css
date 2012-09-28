@@ -73,6 +73,38 @@ img.loading {
     height: 20px;
 }
 
+#counter {
+    float: right;
+}
+
+#error {
+    display: none;
+}
+
+ul#messages li, #send-guff ul li  {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+ul#messages li p {
+    width: 70%;
+    float: left;
+}
+
+ul#messages li span {
+    width: 20%;
+    float: right;
+    color: #ccc;
+}
+
+#jqt ul li textarea {
+    padding: 5px;
+}
+
+#jqt ul li input[type="text"], #jqt ul li input[type="password"], #jqt ul li input[type="tel"], #jqt ul li input[type="number"], #jqt ul li input[type="search"], #jqt ul li input[type="email"], #jqt ul li input[type="url"], #jqt ul li textarea, #jqt ul li select {
+    font-size: 16px;
+}
+
 span.label { 
     padding-left: 10px;
     float:right; 

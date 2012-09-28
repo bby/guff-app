@@ -79,7 +79,7 @@
           <div class="info scroll" id="error"></div>
           
           <ul id="messages">
-              <li><img id="map" src="images/loading.gif" class="loading" />Getting location <span class='label'>Accuracy</span><div id="accuracy-indicator"><span></span></div><span id="accuracy"></span></li>
+              <li><img id="map" src="images/loading.gif" class="loading" />Getting location <div id="accuracy-indicator"><span></span></div><span id="accuracy"></span></li>
           </ul>
       </div>
       <div id="location">
@@ -97,15 +97,16 @@
           <div class="toolbar">
                 <h1>New Guff</h1>
                 <a class="back" id="back" href="#">cancel</a>
+                <a class="button" id="submitGuff">send</a>
           </div>
           <div class="info scroll" id="error"></div>
           <form id="send-guff" class="scroll" action="http://guff.herokuapp.com/send" method="post">
           <!--<form id="send-guff" class="scroll" action="http://192.168.0.3:4567/send" method="post">-->
               <ul class="edit rounded">
-                  <li><label for="post_text">Post a message [<span id="counter">141</span>]</label></li>
+                  <li><label for="post_text">New Guff</label></li>
                   <li><textarea rows="4" cols="30" name="message" id="message"></textarea></li>
-                  <li><input type="submit" value="send" id="guffSubmit" class="whiteButton"/></li>
-                  <li><em>Your message will be visible within a 200m range of here for 2hrs</em></li>
+                  <!-- <li><input type="submit" value="send" id="guffSubmit" class="whiteButton"/></li> -->
+                  <li><em>200m range, for 2hrs</em><span id="counter">141</span></li>
                   <input type="hidden" name="accuracy" id="accuracy" value="" />
                   <input type="hidden" name="latitude" id="latitude" value="" />
                   <input type="hidden" name="longitude" id="longitude" value="" />

@@ -57,6 +57,14 @@ Guff.prototype = {
         console.log('enabling all interactions after accurate location obtained');
         $('.button').show();
     },
+
+    enableSubmit: function() {
+        console.log("message submit enabled");
+        $("#submitGuff").on("click", function(e){
+            console.log("message form trigger submit");
+            $("#send-guff").submit();
+        })
+    },
     
     getLocation: function() {
         console.log('getting location');
@@ -111,7 +119,8 @@ Guff.prototype = {
             
             //bind interactions etc
             this.setMap();
-            this.getMessages(this.loc.coords.latitude, this.loc.coords.longitude, "#messages")
+            this.getMessages(this.loc.coords.latitude, this.loc.coords.longitude, "#messages");
+            this.enableSubmit();
         }
     },
     
@@ -162,9 +171,7 @@ Guff.prototype = {
         $('#send-guff').on('submit', function(e){
             
             //disable button till successful submission or error
-            $("#guffSubmit").attr('value','sending');
-            $("#guffSubmit").off('click');
-            $("#guffSubmit").attr('class','');
+            $("#submitGuff").off('click');
             
             if ($('#message').attr('value').length>0) {
                 o.getTokenID(function(tokenID) {
@@ -181,7 +188,7 @@ Guff.prototype = {
 
                             $("#back").trigger(o.clickEvent);
                             o.resetMessageField();
-                            o.resetSubmit();
+                            o.enableSubmit();
                             o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
                          },
                          error: function(xhr, type){ o.errorHandler('ajax', xhr, type); }
@@ -192,12 +199,6 @@ Guff.prototype = {
             }
             return false;
         });
-    },
-    
-    resetSubmit: function() {
-        $("#guffSubmit").attr('value','send');
-        $("#guffSubmit").on('click');
-        $("#guffSubmit").attr('class','whiteButton');
     },
     
     resetMessageField: function() {
@@ -235,7 +236,7 @@ Guff.prototype = {
             if (minutes > 115) {
                 var mOld = 121-minutes;
                 var mS = mOld > 1 ? 's':'';
-                time_message = "posted less than "+mOld+" minute"+mS+" ago";
+                time_message = mOld+"m "+mS+"ago";
             } else {
                 time_message = 'under 2 hours left ';
             }
@@ -259,6 +260,7 @@ Guff.prototype = {
     },
     
     errorHandler: function(type, message, error) {
+        $("#error").show();
         switch(type)
         {
         case 'geo':
