@@ -122,31 +122,20 @@ ul#messages li span {
 }
 
 #jqt .button, #jqt .back, #jqt .cancel, #jqt .add {
-    position: absolute;
-    overflow: hidden;
-    width: auto;
-    height: 30px;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 30px;
-    text-overflow: ellipsis;
-    text-decoration: none;
-    white-space: nowrap;
-    background: none;
-    bottom: 6px;
-    right: 10px;
-    margin: 0;
-    padding: 0 10px;
-    color: white;
-    text-shadow: #2A8AC5 0 -1px 0;
-    -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0, 0, 0, 0.2) 0 1px 2px inset;
-    box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0, 0, 0, 0.2) 0 1px 2px inset;
     border: 1px solid #2479A3;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    background-image: none;
     background-color: #1C5E7F;
+}
+
+#jqt .back::after, #jqt .back::before {
+    background-color: #1C5E7F;
+}
+
+#jqt .back.active:after {
+  background-color: #164A5E;
+}
+
+#jqt .button.active, #jqt .back.active, #jqt .cancel.active, #jqt .add.active {
+  background-color: #164A5E;
 }
 
 #jqt .toolbar > h1 {
