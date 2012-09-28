@@ -66,6 +66,7 @@ Guff.prototype = {
         console.log("message submit enabled");
         $("#submitGuff").on("click", function(e){
             console.log("message form trigger submit");
+            $(this).addClass('active');
             $("#send-guff").submit();
         })
     },
