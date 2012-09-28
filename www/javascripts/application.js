@@ -1,3 +1,7 @@
+$("body").bind("pageAnimationEnd", function (e, info) {
+    $('body').height($('div.current').height());
+});
+
 function Guff() {
 }
 
@@ -195,7 +199,8 @@ Guff.prototype = {
                     });
                 });
             } else {
-                o.errorHandler('user', 'You need to write something', '');
+                //o.errorHandler('user', 'You need to write something', '');
+                console.log('You need to write something')
             }
             return false;
         });

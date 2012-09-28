@@ -105,6 +105,66 @@ ul#messages li span {
     font-size: 16px;
 }
 
+#jqt .toolbar {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: rgba(32, 121, 163, 0) 0 1px 6px;
+    box-shadow: rgba(28, 94, 127, 0.8) 0 1px 6px;
+    border-bottom: 1px solid #2479A3;
+    z-index: 10;
+    position: relative;
+    padding: 10px;
+    height: 44px;
+}
+
+#jqt .toolbar {
+    background-color: #2A8AC5;
+}
+
+#jqt .button, #jqt .back, #jqt .cancel, #jqt .add {
+    position: absolute;
+    overflow: hidden;
+    width: auto;
+    height: 30px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    white-space: nowrap;
+    background: none;
+    bottom: 6px;
+    right: 10px;
+    margin: 0;
+    padding: 0 10px;
+    color: white;
+    text-shadow: #2A8AC5 0 -1px 0;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0, 0, 0, 0.2) 0 1px 2px inset;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0, rgba(0, 0, 0, 0.2) 0 1px 2px inset;
+    border: 1px solid #2479A3;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-image: none;
+    background-color: #1C5E7F;
+}
+
+#jqt .toolbar > h1 {
+    color: white;
+    text-shadow: #1C5E7F 0 1px 0;
+}
+
+#jqt #home .toolbar > h1 {
+    bottom: 4px;
+}
+
+#infoButton svg {
+    margin-top: 4px;
+}
+
+#locationButton svg, #locationRefresh svg {
+    margin-top: 2px;
+}
 span.label { 
     padding-left: 10px;
     float:right; 
