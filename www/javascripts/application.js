@@ -26,6 +26,18 @@ Guff.prototype = {
         //Set click event to tap as click is not used by any of our target devices
         this.clickEvent = 'tap';
 
+        var o = this;
+
+        //Setup listener for when resume
+        document.addEventListener("resume", function() {
+            console.log("******* RESUMED ******")
+        
+            //Get messages then get location?
+            o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
+            //
+            o.getLocation();
+        }, false); 
+        
         this.disableInteraction();
         this.postMessage();
         this.refreshLocation();
@@ -56,6 +68,7 @@ Guff.prototype = {
     },
     
     refreshLocation: function() {
+
         var o = this;
         $("#locationRefresh").on(o.clickEvent, function(e) {
             console.log('refreshing location');
@@ -144,7 +157,7 @@ Guff.prototype = {
     },
         
     postMessage: function() {
-        console.log('posting message');
+        
         var o = this;
         $('#send-guff').on('submit', function(e){
             
@@ -286,6 +299,10 @@ Guff.prototype = {
     getTokenFail: function(err) {
         alert("Failed to get Token")
     }
+
+
+
+
 };
 
 $(function(){
