@@ -14,7 +14,7 @@
 	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
 	-->
 	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
-	<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="javascripts/cordova-2.0.0.js"></script>
 	
 	<!-- vendor libraries -->
     <script src="javascripts/vendor/jqtouch/zepto.jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
@@ -79,13 +79,13 @@
           <div class="info scroll" id="error"></div>
           
           <ul id="messages">
-              <li><img id="map" src="images/loading.gif" class="loading" />Getting location</li>
+              <li><img id="map" src="images/loading.gif" class="loading" />Getting location <span class='label'>Accuracy</span><div id="accuracy-indicator"><span></span></div><span id="accuracy"></span></li>
           </ul>
       </div>
       <div id="location">
             <div class="toolbar">
                 <h1>Location</h1>
-                <a class="back" href="#">cancel</a>
+                <a class="back" href="#">back</a>
                 <a class="button slideup" href="#location" id="locationRefresh"><img src="images/01-refresh.png"></a>
             </div>
             <div class="info scroll" id="error"></div>
@@ -104,7 +104,7 @@
               <ul class="edit rounded">
                   <li><label for="post_text">Post a message [<span id="counter">141</span>]</label></li>
                   <li><textarea rows="4" cols="30" name="message" id="message"></textarea></li>
-                  <li><input type="submit" value="send" class="whiteButton"/></li>
+                  <li><input type="submit" value="send" id="guffSubmit" class="whiteButton"/></li>
                   <li><em>Your message will be visible within a 200m range of here for 2hrs</em></li>
                   <input type="hidden" name="accuracy" id="accuracy" value="" />
                   <input type="hidden" name="latitude" id="latitude" value="" />
