@@ -101,15 +101,15 @@ Guff.prototype = {
             $("#accuracy-indicator span").css({width: accuracyMeter+'%'});
         }
 
-        if (accuracyMeter<=30) {
-            $("#accuracy-indicator span").css({backgroundColor: 'red'});
-        } else if (accuracyMeter > 30 && accuracyMeter <= 60) {
-            $("#accuracy-indicator span").css({backgroundColor: 'orange'});
-        } else if (accuracyMeter > 60 && accuracyMeter < 100) {
-            $("#accuracy-indicator span").css({backgroundColor: 'yellow'});
-        } else {
-            $("#accuracy-indicator span").css({backgroundColor: 'green'});
-        }
+        // if (accuracyMeter<=30) {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'red'});
+        // } else if (accuracyMeter > 30 && accuracyMeter <= 60) {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'orange'});
+        // } else if (accuracyMeter > 60 && accuracyMeter < 100) {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'yellow'});
+        // } else {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'green'});
+        // }
         
         
         if(loc.coords.accuracy < this.requiredAccuracy) {
