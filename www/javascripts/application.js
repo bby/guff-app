@@ -64,6 +64,7 @@ Guff.prototype = {
 
     enableSubmit: function() {
         console.log("message submit enabled");
+        $("#submitGuff").removeClass('loading');
         $("#submitGuff").on("click", function(e){
             console.log("message form trigger submit");
             $(this).addClass('active');
@@ -85,6 +86,7 @@ Guff.prototype = {
         var o = this;
         $("#locationRefresh").on(o.clickEvent, function(e) {
             console.log('refreshing location');
+            $(this).addClass('loading');
             o.getLocation();
         });
     },
@@ -99,15 +101,15 @@ Guff.prototype = {
             $("#accuracy-indicator span").css({width: accuracyMeter+'%'});
         }
 
-        if (accuracyMeter<=30) {
-            $("#accuracy-indicator span").css({backgroundColor: 'red'});
-        } else if (accuracyMeter > 30 && accuracyMeter <= 60) {
-            $("#accuracy-indicator span").css({backgroundColor: 'orange'});
-        } else if (accuracyMeter > 60 && accuracyMeter < 100) {
-            $("#accuracy-indicator span").css({backgroundColor: 'yellow'});
-        } else {
-            $("#accuracy-indicator span").css({backgroundColor: 'green'});
-        }
+        // if (accuracyMeter<=30) {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'red'});
+        // } else if (accuracyMeter > 30 && accuracyMeter <= 60) {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'orange'});
+        // } else if (accuracyMeter > 60 && accuracyMeter < 100) {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'yellow'});
+        // } else {
+        //     $("#accuracy-indicator span").css({backgroundColor: 'green'});
+        // }
         
         
         if(loc.coords.accuracy < this.requiredAccuracy) {
@@ -115,6 +117,10 @@ Guff.prototype = {
             console.log('accuracy at: '+loc.coords.accuracy);
             navigator.geolocation.clearWatch(this.watchId); 
             this.enableInteraction();
+
+            //should really break this all into its own function
+            setTimeout(function(){$('#locationRefresh').removeClass('loading')}, 500);
+            
             this.loc = loc;
             
             //set hidden fields for message form
@@ -177,6 +183,7 @@ Guff.prototype = {
             
             //disable button till successful submission or error
             $("#submitGuff").off('click');
+            $("#submitGuff").addClass('loading');
             
             if ($('#message').attr('value').length>0) {
                 o.getTokenID(function(tokenID) {

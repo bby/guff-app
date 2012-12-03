@@ -62,15 +62,15 @@ img.loading {
 #accuracy-indicator {
     width: 100px;
     height: 20px;
-    border: 1px solid black;
+    border: 1px solid #1C5E7F;
     float: right;
 }
 
 #accuracy-indicator span {
-    background-color: #ccc;
     display: block;
     width: 100%;
     height: 20px;
+    float: none !important;
 }
 
 #counter {
@@ -154,7 +154,44 @@ ul#messages li span {
 #locationButton svg, #locationRefresh svg {
     margin-top: 2px;
 }
+
 span.label { 
     padding-left: 10px;
     float:right; 
 }
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes pulse {
+  0% {background-color: #1C5E7F;}
+  50% {background-color: #3FA3D5;}
+  100% {background-color: #1C5E7F;}
+}
+
+#accuracy-indicator span {
+ /* webkit chrome, safari, mobile */
+    -webkit-animation-name: pulse; 
+    -webkit-animation-duration: 1000ms; /* 40 seconds */
+    -webkit-animation-iteration-count: infinite; 
+    -webkit-animation-timing-function: linear;   
+}
+
+#submitGuff.loading {
+/* webkit chrome, safari, mobile */
+    -webkit-animation-name: pulse; 
+    -webkit-animation-duration: 1000ms; /* 40 seconds */
+    -webkit-animation-iteration-count: infinite; 
+    -webkit-animation-timing-function: linear;
+}
+
+#locationRefresh.loading svg {
+/* webkit chrome, safari, mobile */
+  -webkit-animation-name: spin; 
+  -webkit-animation-duration: 1000ms; /* 40 seconds */
+  -webkit-animation-iteration-count: infinite; 
+  -webkit-animation-timing-function: linear;
+}
+
